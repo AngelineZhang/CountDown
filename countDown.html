@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="CountDown.js"></script> 
+	<style>
+		#countDown1,#countDown2,#countDown3,#countDown4{
+			width: 300px;
+			height: 50px;
+			border:1px solid gray;
+			margin:10px auto;
+			text-align:center;
+			float:left;
+
+		}
+		
+	</style>
+</head>
+<body>
+	<!-- <div  >
+		<h3>CountDown组件的文档说明</h3>	
+			<p>CountDown组件需要传入两个参数，第一个参数是包含倒计时容器的DomId，第二参数options</p>
+			<ul>
+				<li>
+					<h4>options中包含的属性有:</h4>
+					<p>endDate：倒计时的结束时间，其值为Date类型；</p>
+					<p>timeAction：是一个数组，数组的每一个元素，包含了到规定时间要做的相应操作；</p>
+					<p style="color:red"> endDate是约定必须传入的</p>
+				</li>
+				<li>
+					<h4>timeAction每个元素中有三个属性:</h4>
+					<p>time:设定要操作的时间，以秒为单位；</p>
+					<p>timeSymbol:判断的运算符，根据项目需求目前只有以下三种取值"<=" "=" "<"；</p>
+					<p>callback : 到设定的时间，应该做相应操作的回调函数；</p>
+					<p style="color:red">timeAction的有无是根据需要而设定的；</p>
+					<p ><i>eg:</i>如果想要在倒计时等于30分钟时，需要页面刷新一下页面，则需要在timeAction中
+				  添加一个{time:30*60，timeSymbol:"="，callback :refreshPage }对象</p>
+				</li>
+			</ul>
+			<p><i>显示的四个倒计时是四个实例的测试效果</i></p>
+	</div> -->
+	<div id="countDown1">
+		<div id="data">
+			<p id="need">
+				<span data-time="day"></span>
+				<span data-time="hour"></span>
+				<span data-time="min"></span>
+				<span data-time="sec"></span>
+				<span></span>
+			</p>
+		</div>	
+	</div>
+	<div id="countDown2">
+		<div id="data">
+			<p id="need">
+				<span data-time="day"></span>
+				<span data-time="hour"></span>
+				<span data-time="min"></span>
+				<span data-time="sec"></span>
+				<span></span>
+			</p>
+		</div>	
+	</div>
+	<div id="countDown3">
+		<div id="data">
+			<p id="need">
+				<span data-time="day"></span>
+				<span data-time="hour"></span>
+				<span data-time="min"></span>
+				<span data-time="sec"></span>
+				<span></span>
+			</p>
+		</div>	
+	</div>
+	<div id="countDown4">
+		<div id="data">
+			<p id="need">
+				<span data-time="day"></span>
+				<span data-time="hour"></span>
+				<span data-time="min"></span>
+				<span data-time="sec"></span>
+				<span></span>
+			</p>
+		</div>	
+	</div>
+
+	<script>
+		/*参数：domId 是包含显示day,hour,minute,second 容器的Id*/
+		function styleChange(domId){
+			document.getElementById(domId).style.display = "none";
+			
+		}
+		function refreshPage(){
+			window.location.reload();
+			
+		}
+		/*参数：strInterval表示传入的时间单位,Number表示传入的时间大小*/
+        Date.prototype.DateAdd = function(strInterval, Number) {   
+            var dtTmp = this;  
+            switch (strInterval) {   
+       			case 'sec' :return new Date(Date.parse(dtTmp) + (1000 * Number));  
+       			case 'min' :return new Date(Date.parse(dtTmp) + (60000 * Number));  
+       			case 'hour' :return new Date(Date.parse(dtTmp) + (3600000 * Number));  
+       			case 'day' :return new Date(Date.parse(dtTmp) + (86400000 * Number));             
+        		case 'mon' :return new Date(dtTmp.getFullYear(), (dtTmp.getMonth()) + Number, dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());  
+        		case 'year' :return new Date((dtTmp.getFullYear() + Number), dtTmp.getMonth(), dtTmp.getDate(), dtTmp.getHours(), dtTmp.getMinutes(), dtTmp.getSeconds());  
+     		}  
+        }  
+        var myDate = new Date();
+		
+		  window.onload = function ()
+		  {
+		  	/*CountDown组件需要传入两个参数，第一个参数是包含倒计时容器的DomId，第二参数options
+				1.options中包含的属性有：
+				  endDate：倒计时的结束时间，其值为Date类型；
+				  timeAction：是一个数组，数组的每一个元素，包含了到规定时间要做的相应操作；
+				  endDate是必须的；
+				2.timeAction每个元素中有三个属性：
+				  time:设定要操作的时间，以秒为单位；
+				  timeSymbol:判断的运算符，根据项目需求目前只有以下三种取值"<=" "=" "<"；
+				  callback : 到设定的时间，应该做相应操作的回调函数；
+				  timeAction的有无是根据需要而设定的；
+				  eg:如果想要在倒计时等于30分钟时，需要页面刷新一下页面，则需要在timeAction中
+				  添加一个{time:30*60，timeSymbol:"="，callback :refreshPage }对象
+		  	*/
+		 				 			
+		  		/*test*/
+			  	var countDown1 = new CountDown("countDown1", {
+			 		endDate: myDate.DateAdd('min',41),
+			 		timeAction :[{time:1800,timeSymbol:"<=", callback :styleChange}]
+		   		});
+
+		   		/* NBA legacy allstar*/
+		   		var countDown2 = new CountDown ("countDown2", {
+			 		 endDate:myDate.DateAdd('hour',3),
+			 		 timeAction :[{time:0,timeSymbol:"<=", callback :refreshPage}]
+		   		});
+
+		   		/*NBA legacy pregame.js*/
+		   		var countDown3= new CountDown ("countDown3", {
+			 		 endDate:myDate.DateAdd('day',31),
+			 		 timeAction :[{time:0,timeSymbol:"=",callback :refreshPage},{time:1800, timeSymbol:"=",callback :refreshPage}]
+		   		});
+		   		/*UFC*/
+
+		   		var countDown4= new CountDown ("countDown4", {
+			 		 endDate: myDate.DateAdd('mon',3),
+			 		 timeAction :[{time:0,timeSymbol:"<", callback :styleChange}]
+		   		}); 
+		  }
+	</script>
+</body>
+</html>

@@ -18,4 +18,4 @@
 				  添加一个{time:30*60，timeSymbol:"="，callback :refreshPage }对象</p>
 				</li>
 			</ul>
-			<p><i>显示的四个倒计时是四个实例的测试效果</i></p>
+			<p><i>demo中为显示的四个倒计时是四个实例的测试效果</i></p>
